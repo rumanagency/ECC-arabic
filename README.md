@@ -71,20 +71,20 @@
 
 | الدرس | الوصف | Markdown | HTML |
 |-------|-------|----------|------|
-| 1. مقدمة إلى نظام ECC | الفرق بينه وبين النسخة العادية. | [Markdown](Markdown/lesson-01-introduction.md) | [HTML](html/lesson-01-introduction.html) |
-| 2. الإعداد العالمي | التبديل الاستراتيجي بين النماذج (Opus, Sonnet, Haiku). | [Markdown](Markdown/lesson-02-global-setup.md) | [HTML](html/lesson-02-global-setup.html) |
-| 3. هندسة المشاريع الجديدة | إنشاء مجلدات `.claude/`. | [Markdown](Markdown/lesson-03-new-projects.md) | [HTML](html/lesson-03-new-projects.html) |
-| 4. المشاريع الحالية (Legacy Code) | دمج نظام ECC بها. | [Markdown](Markdown/lesson-04-existing-projects.md) | [HTML](html/lesson-04-existing-projects.html) |
-| 5. التنمية الموجهة بالاختبارات (TDD) | إضافة ميزات جديدة. | [Markdown](Markdown/lesson-05-new-features.md) | [HTML](html/lesson-05-new-features.html) |
-| 6. الوكلاء (Agents) | احتراف استخدام الوكلاء المتخصصين. | [Markdown](Markdown/lesson-06-agents-mastery.md) | [HTML](html/lesson-06-agents-mastery.html) |
-| 7. المهارات (Skills) | إتقان استدعاء المهارات الجاهزة. | [Markdown](Markdown/lesson-07-skills-mastery.md) | [HTML](html/lesson-07-skills-mastery.html) |
-| 8. الخطافات (Hooks) | الغوص العميق وأتمتة المهام. | [Markdown](Markdown/lesson-08-hooks-deepdive.md) | [HTML](html/lesson-08-hooks-deepdive.html) |
-| 9. الوكلاء المخصصين (Custom Extensions) | بناء مهارات لفريقك. | [Markdown](Markdown/lesson-09-custom-extensions.md) | [HTML](html/lesson-09-custom-extensions.html) |
-| 10. أنظمة التصميم (Design Systems) | هندسة وبناء واجهات متقدمة. | [Markdown](Markdown/lesson-10-design-systems.md) | [HTML](html/lesson-10-design-systems.html) |
-| 11. أفضل الممارسات اللغوية | الالتزام بمعايير كل لغة برمجة. | [Markdown](Markdown/lesson-11-language-best-practices.md) | [HTML](html/lesson-11-language-best-practices.html) |
-| 12. دورة حياة المشاريع المتقدمة (Lifecycle) | دورة حياة المشاريع. | [Markdown](Markdown/lesson-12-project-lifecycle.md) | [HTML](html/lesson-12-project-lifecycle.html) |
-| 13. تعدد النماذج والوكلاء (Multi-Agent Orchestration) | لمنع التضارب. | [Markdown](Markdown/lesson-13-multi-agent-orchestration.md) | [HTML](html/lesson-13-multi-agent-orchestration.html) |
-| 14. لوحة التحكم الرسومية (ECC Dashboard GUI) | لوحة التحكم الرسومية. | [Markdown](Markdown/lesson-14-dashboard-gui.md) | [HTML](html/lesson-14-dashboard-gui.html) |
+| 1. مقدمة إلى نظام ECC | الفرق بينه وبين النسخة العادية. | [Markdown](Markdown/lesson-01-introduction.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-01-introduction.html) |
+| 2. الإعداد العالمي | التبديل الاستراتيجي بين النماذج (Opus, Sonnet, Haiku). | [Markdown](Markdown/lesson-02-global-setup.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-02-global-setup.html) |
+| 3. هندسة المشاريع الجديدة | إنشاء مجلدات `.claude/`. | [Markdown](Markdown/lesson-03-new-projects.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-03-new-projects.html) |
+| 4. المشاريع الحالية (Legacy Code) | دمج نظام ECC بها. | [Markdown](Markdown/lesson-04-existing-projects.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-04-existing-projects.html) |
+| 5. التنمية الموجهة بالاختبارات (TDD) | إضافة ميزات جديدة. | [Markdown](Markdown/lesson-05-new-features.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-05-new-features.html) |
+| 6. الوكلاء (Agents) | احتراف استخدام الوكلاء المتخصصين. | [Markdown](Markdown/lesson-06-agents-mastery.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-06-agents-mastery.html) |
+| 7. المهارات (Skills) | إتقان استدعاء المهارات الجاهزة. | [Markdown](Markdown/lesson-07-skills-mastery.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-07-skills-mastery.html) |
+| 8. الخطافات (Hooks) | الغوص العميق وأتمتة المهام. | [Markdown](Markdown/lesson-08-hooks-deepdive.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-08-hooks-deepdive.html) |
+| 9. الوكلاء المخصصين (Custom Extensions) | بناء مهارات لفريقك. | [Markdown](Markdown/lesson-09-custom-extensions.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-09-custom-extensions.html) |
+| 10. أنظمة التصميم (Design Systems) | هندسة وبناء واجهات متقدمة. | [Markdown](Markdown/lesson-10-design-systems.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-10-design-systems.html) |
+| 11. أفضل الممارسات اللغوية | الالتزام بمعايير كل لغة برمجة. | [Markdown](Markdown/lesson-11-language-best-practices.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-11-language-best-practices.html) |
+| 12. دورة حياة المشاريع المتقدمة (Lifecycle) | دورة حياة المشاريع. | [Markdown](Markdown/lesson-12-project-lifecycle.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-12-project-lifecycle.html) |
+| 13. تعدد النماذج والوكلاء (Multi-Agent Orchestration) | لمنع التضارب. | [Markdown](Markdown/lesson-13-multi-agent-orchestration.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-13-multi-agent-orchestration.html) |
+| 14. لوحة التحكم الرسومية (ECC Dashboard GUI) | لوحة التحكم الرسومية. | [Markdown](Markdown/lesson-14-dashboard-gui.md) | [HTML](https://htmlpreview.github.io/?https://github.com/rumanagency/ECC-arabic/blob/main/html/lesson-14-dashboard-gui.html) |
 
 </div>
 
