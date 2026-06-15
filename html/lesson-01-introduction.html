@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الأول: مقدمة إلى ECC و Claude Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الأول: مقدمة شاملة وتطبيقات عملية</h1>
+            <p>مرحباً بك في دورة احتراف نظام Everything Claude Code (ECC)</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>ما هو ECC؟</h2>
+                <p>نظام <span class="highlight">Everything Claude Code (ECC)</span> ليس مجرد إضافة بسيطة، بل هو <strong>نظام تشغيل متكامل لوكلاء الذكاء الاصطناعي (Agent Harness Operating System)</strong>.</p>
+                <p>يهدف النظام إلى تعزيز قدرات Claude Code وغيره من واجهات البرمجة من خلال توفير بيئة عمل مجهزة مسبقاً تشمل: المهارات، الذاكرة، الوكلاء الفرعيين، والخطافات التلقائية.</p>
+            </div>
+
+            <div class="card">
+                <h2>المكونات الأساسية لنظام ECC</h2>
+                <ul>
+                    <li><strong>الوكلاء الفرعيون (Sub-agents):</strong> 64+ وكيل متخصص لحل مهام معينة (مثل: المخطط <code>planner</code>، المراجع الأمني <code>security-reviewer</code>).</li>
+                    <li><strong>المهارات (Skills):</strong> 262+ سير عمل مهيكل للتعامل مع المهام المكررة.</li>
+                    <li><strong>الخطافات (Hooks):</strong> أتمتة تعمل عند أحداث معينة (مثل قبل استخدام أداة معينة).</li>
+                    <li><strong>القواعد (Rules):</strong> إرشادات صارمة مجمعة حسب اللغة البرمجية.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>مثال عملي: Claude العادي مقابل ECC Claude</h2>
+                <p>لنفهم قوة ECC حقاً، دعونا نلقي نظرة على سيناريو واقعي. تخيل أنك تريد إضافة ميزة "تسجيل الدخول عبر Google OAuth" في تطبيقك.</p>
+                
+                <h3>السيناريو الأول: استخدام Claude العادي (بدون ECC)</h3>
+                <p>عادة، ستقوم بفتح الطرفية وكتابة الآتي:</p>
+                <pre><code>claude "أضف ميزة تسجيل الدخول عبر Google إلى التطبيق"</code></pre>
+                <p><strong>ماذا سيحدث؟</strong></p>
+                <ul>
+                    <li>سيحاول Claude قراءة الكثير من ملفات المشروع دفعة واحدة، مما قد يستهلك كامل نافذة السياق (Context Window).</li>
+                    <li>قد يبدأ بكتابة الكود فوراً بدون تخطيط.</li>
+                    <li>قد ينسى كتابة الاختبارات (Tests) أولاً.</li>
+                    <li>لن يكون هناك مراجعة أمنية تلقائية للمفاتيح السرية (API Keys).</li>
+                </ul>
+
+                <h3>السيناريو الثاني: استخدام ECC بطريقة احترافية</h3>
+                <p>الآن، دعونا ننفذ نفس المهمة باستخدام نظام ECC عبر الوكلاء الفرعيين (Sub-agents):</p>
+                <pre><code># الخطوة الأولى: التخطيط فقط
+/ecc:plan "Add Google OAuth login feature"
+
+# الخطوة الثانية: إجبار الذكاء الاصطناعي على كتابة الاختبارات أولاً عبر مهارة جاهزة
+tdd-workflow skill "Implement the Google OAuth based on the plan"
+
+# الخطوة الثالثة: مراجعة الكود والأمان فور الانتهاء
+/code-review
+/security-scan</code></pre>
+                <p><strong>النتيجة العملية:</strong></p>
+                <ul>
+                    <li>استهلاك أقل بكثير للسياق لأن <code>planner</code> لا يكتب الكود.</li>
+                    <li>ضمان جودة الكود بسبب إجبار نهج (Test-Driven Development).</li>
+                    <li>الوكيل الأمني <code>security-reviewer</code> سيتأكد من أنك لم تضع مفتاح Google Client Secret داخل الكود بشكل مكشوف، بل سينصحك بوضعه في ملف <code>.env</code>.</li>
+                </ul>
+            </div>
+
+        </main>
+
+        <div class="nav-buttons">
+            <a href="#" class="btn disabled">السابق</a>
+            <a href="lesson-02-global-setup.html" class="btn">الدرس التالي: الإعداد العالمي</a>
+        </div>
+    </div>
+</body>
+</html>

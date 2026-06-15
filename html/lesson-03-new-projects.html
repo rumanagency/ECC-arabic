@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثالث: المشاريع الجديدة مع ECC والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الثالث: إطلاق المشاريع الجديدة</h1>
+            <p>كيف تبدأ مشروعك الجديد بالطريقة الصحيحة مستخدماً قوة الوكلاء والتخطيط المسبق، مع تطبيق عملي كامل.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>حالة استخدام عملية: بناء مدونة باستخدام Next.js 15</h2>
+                <p>تخيل أنك تود البدء بمشروع جديد لبناء مدونة تقنية باستخدام Next.js. إذا استخدمت المنهج التقليدي (كتابة الكود فوراً)، ستحصل على كود غير منظم وقديم في الغالب. إليك الطريقة الصحيحة باستخدام نظام ECC.</p>
+                
+                <h3>الخطوة الأولى: إعداد الهيكل الأساسي</h3>
+                <p>قم بإنشاء المشروع عبر الأوامر القياسية الخاصة بـ Next.js أولاً داخل الطرفية (Terminal):</p>
+                <pre><code>npx create-next-app@latest my-tech-blog --typescript --tailwind --eslint
+cd my-tech-blog</code></pre>
+
+                <h3>الخطوة الثانية: تجهيز قواعد (Rules) لغة المشروع</h3>
+                <p>بما أن المشروع يستخدم TypeScript و React، يجب أن نضمن أن وكلاء الذكاء الاصطناعي يفهمون أفضل الممارسات الخاصة بها.</p>
+                <pre><code># قم بنسخ قواعد ECC العالمية وقواعد TypeScript إلى مجلد مشروعك
+mkdir -p ./.claude/rules/ecc
+cp -R ~/.claude/rules/common ./.claude/rules/ecc/
+cp -R ~/.claude/rules/typescript ./.claude/rules/ecc/</code></pre>
+                <p><strong>لماذا هذه الخطوة حرجة؟</strong> بدون هذه القواعد، قد يقترح Claude استخدام أنماط قديمة (مثل Class Components في React) أو يتجاهل قواعد كتابة TypeScript الصارمة.</p>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الثالثة: التخطيط الدقيق مع الوكيل المخطط (Planner)</h2>
+                <p>الآن، افتح واجهة محادثة Claude Code في مسار المشروع، واطلب التخطيط <strong>قبل كتابة أي كود</strong>:</p>
+                <pre><code>/ecc:plan "أريد بناء مدونة تقنية باستخدام Next.js App Router، تدعم الوضع الداكن (Dark Mode) وتستخدم Markdown للمقالات. قم بتجهيز هيكل الملفات والمكونات اللازمة."</code></pre>
+                <p><strong>ماذا سيحدث عملياً؟</strong></p>
+                <ul>
+                    <li>سيقوم وكيل <code>planner</code> باستدعاء وكيل النظام <code>architect</code> (إذا تطلب الأمر) لتقرير كيفية تخزين المقالات.</li>
+                    <li>لن يقوم الوكيل بكتابة كود الإنتاج أبداً. بل سينشئ ملف خطة تنفيذي شامل (غالباً بصيغة Markdown) يضع فيه خارطة طريق مفصلة.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الرابعة: التطوير المرحلي الموجه بالاختبار (TDD)</h2>
+                <p>الآن وقد أصبح لديك خطة واضحة، حان وقت التنفيذ. بدلاً من الطلب منه برمجة كل شيء دفعة واحدة، سنطلب منه تنفيذ أول خطوة من الخطة باستخدام مهارة الـ TDD لضمان الموثوقية:</p>
+                <pre><code>tdd-workflow skill "قم بتنفيذ الخطوة الأولى من الخطة وهي إنشاء مكون رأس الصفحة (Header Component) مع دعم التبديل للوضع الداكن."</code></pre>
+                <p><strong>سيناريو التنفيذ الواقعي (RED -> GREEN -> REFACTOR):</strong></p>
+                <ol>
+                    <li><strong>(RED):</strong> سيكتب الوكيل <code>tdd-guide</code> ملف اختبار مثل <code>Header.test.tsx</code> يتحقق من وجود زر الوضع الداكن. بطبيعة الحال سيفشل هذا الاختبار لأن المكون غير موجود بعد.</li>
+                    <li><strong>(GREEN):</strong> سيقوم الوكيل الآن بكتابة الكود الفعلي <code>Header.tsx</code> لضمان نجاح الاختبار المكتوب مسبقاً.</li>
+                    <li><strong>(REFACTOR):</strong> أخيراً، سيقوم بتحسين الكود وتنسيقه دون تغيير وظيفته لتلبية معايير الجودة بنسبة 80% على الأقل لتغطية الاختبارات.</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h2>حالة استخدام متقدمة: بناء منصة SaaS (Laravel + Next.js + Postgres)</h2>
+                <p>لنفترض أنك تبني مشروعاً ضخماً يتكون من واجهة خلفية (Backend) بـ Laravel، وواجهة أمامية (Frontend) بـ Next.js، وقاعدة بيانات PostgreSQL. كيف نجهز هذه البيئة المعقدة مع ECC؟</p>
+                
+                <h3>1. هيكلة المستودع (Monorepo)</h3>
+                <pre><code>mkdir my-saas-project && cd my-saas-project
+# إنشاء الواجهة الأمامية والخلفية
+npx create-next-app@latest frontend
+composer create-project laravel/laravel backend</code></pre>
+
+                <h3>2. استراتيجية توزيع القواعد (Rules Strategy)</h3>
+                <p>في المستودعات الأحادية (Monorepos) التي تحتوي على لغات برمجة مختلفة، لدينا خياران استراتيجيان لإدارة قواعد الذكاء الاصطناعي (Claude Rules):</p>
+                
+                <h4>الخيار الأول: العزل التام (مجلدان <code>.claude</code> منفصلان) - الموصى به للمشاريع الضخمة</h4>
+                <p>قمنا بإنشاء مجلد <code>.claude</code> في الـ Frontend وآخر في الـ Backend. <strong>لماذا؟</strong></p>
+                <ul>
+                    <li><strong>توفير السياق (Context Window):</strong> عندما تقوم بتشغيل <code>claude</code> داخل مجلد <code>frontend</code>، سيقرأ قواعد TypeScript فقط. لن يقرأ قواعد PHP مطلقاً، مما يوفر آلاف الرموز (Tokens) ويقلل التكلفة.</li>
+                    <li><strong>منع التشتت:</strong> يمنع Claude من تطبيق قواعد تصميم خاصة بـ Laravel بالخطأ على كود React.</li>
+                </ul>
+                <pre><code># للواجهة الأمامية
+mkdir -p frontend/.claude/rules/ecc
+cp -R ~/.claude/rules/common frontend/.claude/rules/ecc/
+cp -R ~/.claude/rules/typescript frontend/.claude/rules/ecc/
+
+# للواجهة الخلفية
+mkdir -p backend/.claude/rules/ecc
+cp -R ~/.claude/rules/common backend/.claude/rules/ecc/
+cp -R ~/.claude/rules/php backend/.claude/rules/ecc/</code></pre>
+
+                <h4>الخيار الثاني: مجلد <code>.claude</code> واحد في الجذر (Root)</h4>
+                <p>ماذا لو وضعنا المجلد في الجذر <code>my-saas-project/.claude</code> ونسخنا كافة القواعد (TypeScript و PHP) داخله؟</p>
+                <ul>
+                    <li><strong>الميزة:</strong> يمكنك تشغيل أمر <code>claude</code> من مسار الجذر، وتطلب منه بناء واجهة في الـ Frontend وإنشاء الـ API الخاص بها في الـ Backend <strong>في أمر واحد</strong> (Full-stack Prompting).</li>
+                    <li><strong>العيب:</strong> سيقوم Claude بتحميل كافة قواعد اللغتين في كل رسالة ترسلها، مما يزيد استهلاك مساحة السياق بسرعة.</li>
+                    <li><strong>كيف تنجح بها؟</strong> إذا اخترت هذا النهج، يفضل عدم وضع الكثير من ملفات القواعد المفصلة في الجذر، والاعتماد بدلاً من ذلك على استدعاء <strong>المهارات (Skills)</strong> بشكل صريح عندما تحتاجها لتقليل العبء على النظام.</li>
+                </ul>
+
+                <h3>3. إعداد الاتصال بقاعدة البيانات (Postgres MCP)</h3>
+                <p>لكي يستطيع Claude قراءة مخططات قاعدة البيانات (Schemas) وكتابة استعلامات دقيقة، يجب تفعيل خادم Postgres MCP في الجذر:</p>
+                <pre><code>// إنشاء ملف .mcp.json في جذر المشروع (my-saas-project)
+{
+  "postgres": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://user:password@localhost:5432/saas_db"]
+  }
+}</code></pre>
+
+                <h3>4. استخدام Hookify للأتمتة</h3>
+                <p>نريد التأكد من تنسيق الكود تلقائياً (Prettier للـ Frontend و Pint للـ Backend). بدلاً من كتابة JSON معقد، نستخدم الإضافة <code>hookify</code>:</p>
+                <pre><code># في طرفية Claude
+/hookify "أنشئ خطافاً يعمل بعد تحرير أي ملف php في مجلد backend ليقوم بتشغيل أمر './vendor/bin/pint'"
+/hookify "أنشئ خطافاً يعمل بعد تحرير أي ملف ts/tsx في مجلد frontend ليقوم بتشغيل أمر 'npx prettier --write'"</code></pre>
+
+                <h3>5. التخطيط المعماري الشامل</h3>
+                <p>الآن بيئتك جاهزة تماماً. ابدأ بسؤال الوكيل المعماري (Architect) لربط النظامين معاً:</p>
+                <pre><code>/ecc:plan "قم بتخطيط بنية المصادقة (Authentication) بين Next.js و Laravel باستخدام Laravel Sanctum. حدد مسارات الـ API وشكل استجابات JSON."</code></pre>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-02-global-setup.html" class="btn">الدرس السابق</a>
+            <a href="lesson-04-existing-projects.html" class="btn">الدرس التالي: المشاريع الحالية</a>
+        </div>
+    </div>
+</body>
+</html>

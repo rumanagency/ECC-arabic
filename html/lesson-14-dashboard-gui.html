@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الرابع عشر: استخدام لوحة تحكم ECC (Dashboard)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الرابع عشر: لوحة التحكم (Dashboard GUI)</h1>
+            <p>كيفية تشغيل وإدارة نظام ECC بصرياً بدلاً من استخدام الطرفية (Terminal).</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>ما هي لوحة تحكم ECC؟</h2>
+                <p>بالرغم من قوة واجهة سطر الأوامر (CLI) الخاصة بـ Claude Code، إلا أن تتبع 64+ وكيل و 260+ مهارة وعشرات الخطافات عبر الطرفية قد يكون مرهقاً. لذلك، يأتي نظام ECC مزوداً بـ <strong>تطبيق سطح مكتب (Desktop GUI)</strong> مبني باستخدام Python/Tkinter يتيح لك استكشاف المكونات وإدارتها بصرياً بكل سهولة.</p>
+            </div>
+
+            <div class="card">
+                <h2>كيفية فتح لوحة التحكم (Setup & Open)</h2>
+                <p>تشغيل لوحة التحكم بسيط للغاية. تأكد من أنك متواجد في مسار المشروع الذي يحتوي على ملفات ECC، ثم قم بتشغيل أحد الأمرين التاليين من الطرفية:</p>
+                
+                <h3>عبر Node.js (المفضل):</h3>
+                <pre><code>npm run dashboard</code></pre>
+                
+                <h3>عبر Python مباشرة:</h3>
+                <pre><code>python3 ./ecc_dashboard.py</code></pre>
+                <p>ستظهر لك نافذة تطبيق رسومية أنيقة تدعم تبديل السمة (Dark/Light Mode) ותخصيص الخطوط.</p>
+            </div>
+
+            <div class="card">
+                <h2>أهم ميزات لوحة التحكم (How to Control)</h2>
+                <p>توفر الواجهة الرسومية تحكماً بصرياً كاملاً في نظامك التشغيلي للذكاء الاصطناعي:</p>
+                
+                <ol>
+                    <li><strong>مستكشف المهارات والوكلاء (Skills & Agents Explorer):</strong> يمكنك استعراض جميع المهارات المتاحة لك، قراءة وصفها (Description)، ومعرفة كيفية استدعائها بنقرة زر دون الحاجة لفتح ملفات <code>.md</code> يدوياً.</li>
+                    <li><strong>إدارة خوادم MCP:</strong> يمكنك من خلال لوحة التحكم رؤية الخوادم المفعلة حالياً ومراقبة حالتها (Status).</li>
+                    <li><strong>مراقبة الخطافات (Hooks):</strong> يمكنك استعراض الخطافات المفعلة (PreToolUse و PostToolUse) والتأكد من أنها لم تتكرر بالخطأ بسبب عمليات التثبيت المتعددة.</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h2>الواجهة القادمة (ECC 2.0 Rust Dashboard)</h2>
+                <p>إذا كنت تعمل على النسخة المستقبلية التجريبية (Alpha) من ECC، ستلاحظ وجود محرك مبني بلغة <strong>Rust</strong> في مجلد <code>ecc2/</code>. هذا المحرك سيقدم أدوات تحكم إضافية فائقة السرعة للوحة التحكم:</p>
+                <pre><code># أمثلة لأوامر محرك Rust القادم للوحة التحكم
+ecc2 dashboard # فتح اللوحة المتطورة
+ecc2 sessions  # إدارة الجلسات المفتوحة
+ecc2 daemon    # تشغيل النظام في الخلفية</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>الخلاصة</h2>
+                <p>استخدم <strong>الطرفية (CLI)</strong> عندما تكتب الكود الفعلي (Coding Phase). واستخدم <strong>لوحة التحكم (Dashboard)</strong> عندما تريد الاستكشاف (Exploration)، مراجعة المهارات المتاحة، أو مراقبة حالة نظامك (System Monitoring).</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-13-multi-agent-orchestration.html" class="btn">الدرس السابق</a>
+            <a href="index.html" class="btn">العودة للفهرس (Table of Contents)</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الحادي عشر: أفضل ممارسات اللغات البرمجية مع ECC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الحادي عشر: إجبار الذكاء الاصطناعي على أفضل الممارسات</h1>
+            <p>كيف تضمن أن الكود المكتوب عبر Claude يناسب لغة مشروعك المحددة 100%.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>مشكلة النماذج العامة (General AI Models)</h2>
+                <p>بشكل افتراضي، عند طلب كود Python من Claude، قد يكتبه بأسلوب يشبه Java. وعند طلب كود React، قد يستخدم كوداً قديماً. <strong>الحل؟</strong> نظام "القواعد" (Rules) في ECC والوكلاء المتخصصون.</p>
+            </div>
+
+            <div class="card">
+                <h2>1. استخدام مجلد القواعد (Rules Directory)</h2>
+                <p>يحتوي نظام ECC على مجلد قواعد ضخم مقسم حسب اللغات وأطر العمل (مثل: <code>rules/python</code>, <code>rules/go</code>, <code>rules/rust</code>). يجب عليك دائماً نسخ القواعد الخاصة بمشروعك محلياً لفرضها.</p>
+                
+                <h3>مثال: مشروع لغة Go</h3>
+                <pre><code># توجيه Claude لفهم أن هذا مشروع Go
+mkdir -p .claude/rules/ecc
+cp -R ~/.claude/rules/common .claude/rules/ecc/
+cp -R ~/.claude/rules/go .claude/rules/ecc/</code></pre>
+                <p>بمجرد فعل ذلك، سيبدأ Claude تلقائياً بفهم أن دوال Go يجب أن ترجع الأخطاء (Errors) بشكل صريح، وأنه يجب استخدام الـ Goroutines بفعالية، ولن يكتب كود Go بأسلوب لغة أخرى.</p>
+            </div>
+
+            <div class="card">
+                <h2>2. الاستعانة بالمراجعين المتخصصين (Specialized Reviewers)</h2>
+                <p>بعد كتابة الكود أو إضافة ميزة عبر <code>tdd-workflow</code>، لا تستخدم أمر المراجعة العام. يوفر ECC وكلاء فرعيين متخصصين لكل لغة تقريباً لمراجعة الكود!</p>
+                
+                <h3>حالة استخدام: مراجعة مشروع Django / Python</h3>
+                <p>لديك ميزة جديدة أضفتها لتطبيق Django. كيف تتأكد أنها تتبع معايير PEP8 وأنك لا تعاني من مشكلة استعلامات الـ N+1 في الـ ORM؟</p>
+                <pre><code>/django-reviewer "قم بمراجعة ملف \`models.py\` وملف \`views.py\` الجدد. تأكد من عدم وجود استعلامات N+1 ومن الالتزام بأفضل ممارسات Django REST Framework."</code></pre>
+                <p>الوكيل <code>django-reviewer</code> مبرمج مسبقاً بقاعدة معرفية عميقة حول إطار العمل، وسيقوم بالتنبيه على تفاصيل دقيقة جداً لا يلاحظها المراجع العادي.</p>
+            </div>
+
+            <div class="card">
+                <h2>3. حل مشاكل البناء اللغوية (Build Resolvers)</h2>
+                <p>أحياناً تواجه أخطاء ترجمة (Compilation Errors) معقدة في لغات مثل Rust أو C++. يوفر ECC وكلاء مصممين خصيصاً لتحليل رسائل الخطأ الغامضة:</p>
+                <pre><code># بدلاً من البحث في جوجل لساعات:
+/rust-build-resolver "تحليل سجل أخطاء الـ Cargo المرفق وحل مشاكل الـ Borrow Checker في ملف \`main.rs\`."</code></pre>
+                <p>يقوم الوكيل بقراءة رسالة خطأ المترجم (Compiler) وتصحيح استخدام الذاكرة وفقاً لأسلوب لغة Rust الصارم.</p>
+            </div>
+            
+            <div class="card">
+                <h2>ملخص القواعد الذهبية</h2>
+                <ol>
+                    <li>انقل دائماً <code>rules/&lt;language&gt;</code> إلى مسارك المحلي.</li>
+                    <li>استخدم المراجع المتخصص للغتك (مثل <code>go-reviewer</code>, <code>kotlin-reviewer</code>).</li>
+                    <li>استخدم محلل أخطاء البناء الخاص ببيئتك (مثل <code>java-build-resolver</code>).</li>
+                </ol>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-10-design-systems.html" class="btn">الدرس السابق</a>
+            <a href="lesson-12-project-lifecycle.html" class="btn">الدرس التالي: دورة حياة المشاريع المتقدمة</a>
+        </div>
+    </div>
+</body>
+</html>

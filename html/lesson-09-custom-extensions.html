@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس التاسع: الإضافات المخصصة والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس التاسع: التوسع وبناء أدوات مخصصة لمشروعك</h1>
+            <p>كيفية إنشاء وتخزين مهارات (Skills)، وكلاء (Agents)، وخطافات (Hooks) مخصصة تناسب احتياجات فريقك الفريدة.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>أين نخزن الإضافات المخصصة؟</h2>
+                <p>يوفر ECC طريقتين لتخزين المكونات المخصصة:</p>
+                <ul>
+                    <li><strong>عالمياً (Globally):</strong> في مجلد <code>~/.claude/</code>. أي إضافة هنا ستعمل في جميع مشاريعك.</li>
+                    <li><strong>محلياً (Locally):</strong> في مجلد <code>.claude/</code> داخل مسار مشروعك الحالي. يُنصح بهذا لتخصيص بيئة فريق معين ومشاركتها عبر Git.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>1. إنشاء مهارة (Skill) مخصصة للفريق</h2>
+                <p>تخيل أن فريقك لديه طريقة معينة لكتابة رسائل الالتزام (Commit Messages). بدلاً من الشرح لـ Claude في كل مرة، سنصنع مهارة:</p>
+                <pre><code># إنشاء المجلد
+mkdir -p .claude/skills/team-commit/
+
+# كتابة ملف SKILL.md
+echo "---
+name: team-commit
+description: Enforces the team's strict conventional commit format.
+---
+# Team Commit Rules
+1. Format: \`[TICKET-ID] &lt;type&gt;: &lt;description&gt;\`
+2. Types: feat, fix, hotfix, chore, docs.
+3. No commit message can exceed 50 characters in the first line.
+" > .claude/skills/team-commit/SKILL.md</code></pre>
+                <p><strong>طريقة الاستخدام:</strong> <code>team-commit skill "راجع تعديلاتي واكتب رسالة commit"</code></p>
+            </div>
+
+            <div class="card">
+                <h2>2. إنشاء وكيل فرعي (Sub-Agent) مخصص</h2>
+                <p>إذا كنت تستخدم أداة قواعد بيانات داخلية ليست مشهورة، فلن يعرفها <code>database-reviewer</code> العادي. يمكنك إنشاء <code>my-db-agent</code>:</p>
+                <pre><code>mkdir -p .claude/agents/
+# قم بإنشاء ملف my-db-agent.md واكتب بداخله:
+---
+name: my-db-agent
+description: متخصص في مراجعة استعلامات قاعدة بيانات الشركة الداخلية (InternalDB).
+---
+# دورك
+أنت خبير في محرك قاعدة البيانات InternalDB الخاص بنا. 
+- يجب أن ترفض أي استعلام يستخدم \`SELECT *\`
+- يجب التأكد من استخدام الـ Index المعرف في ملف \`/docs/db-indexes.md\`</code></pre>
+                <p><strong>طريقة الاستخدام:</strong> <code>/my-db-agent "فحص ملف الاستعلامات الجديد."</code></p>
+            </div>
+
+            <div class="card">
+                <h2>3. إنشاء خطافات مخصصة عبر /hookify</h2>
+                <p>لكتابة خطاف معقد يمنع Claude من تعديل أي ملف في مجلد <code>/legacy/</code>، يمكنك التحدث باللغة الطبيعية بدلاً من كتابة JSON:</p>
+                <pre><code>/hookify "قم بإنشاء PreToolUse hook. إذا حاولت أداة 'Edit' أو 'Replace' تعديل أي ملف يبدأ مساره بـ '/legacy/'، قم برفض الطلب وأرجع رسالة تنبيه بأن هذا المجلد مجمد ولا يجب المساس به."</code></pre>
+                <p>سيقوم وكيل `hookify` بترجمة هذا الوصف البشري إلى هيكل JSON صحيح وحفظه في مسار <code>.claude/hooks/hooks.json</code>.</p>
+            </div>
+            
+            <div class="card">
+                <h2>مشاركة إعدادات مشروعك مع زملائك</h2>
+                <p>بما أن كل هذه الإضافات تم حفظها محلياً في <code>.claude/</code>، كل ما عليك فعله هو إضافتها لـ Git:</p>
+                <pre><code>git add .claude/
+git commit -m "chore: add team specific claude agents and skills"</code></pre>
+                <p>بمجرد أن يقوم زميلك بسحب التحديث (git pull) وفتح Claude Code في المشروع، ستظهر لديه جميع المهارات والوكلاء المخصصة للفريق فوراً!</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-08-hooks-deepdive.html" class="btn">الدرس السابق</a>
+            <a href="lesson-10-design-systems.html" class="btn">الدرس التالي: أنظمة التصميم</a>
+        </div>
+    </div>
+</body>
+</html>

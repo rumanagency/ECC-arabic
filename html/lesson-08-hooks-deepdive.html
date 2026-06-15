@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثامن: الفهم العميق للخطافات (Hooks) والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الثامن: الفهم العميق للخطافات (Hooks)</h1>
+            <p>كيفية أتمتة الإجراءات وفرض القواعد التلقائية لحماية مشروعك وتحسين الكود، مع أمثلة JSON جاهزة.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>حالة استخدام 1: الحماية من تسريب الأسرار (PreToolUse Hook)</h2>
+                <p>من أسوأ الكوارث البرمجية أن يقوم الذكاء الاصطناعي (أو أنت) بكتابة مفتاح API سري داخل الكود ودفعه (Push) إلى GitHub.</p>
+                <p>يمكننا إنشاء خطاف يمنع Claude من تنفيذ أمر الـ <code>git push</code> إذا وجد كلمات مثل "API_KEY" في الملفات المعدلة. يتم تشغيل هذا الخطاف <strong>قبل</strong> استخدام أداة Bash (PreToolUse).</p>
+                
+                <h3>كود الـ Hook:</h3>
+                <pre><code>{
+  "PreToolUse": [
+    {
+      "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "#!/bin/bash\nif git diff HEAD --name-only | xargs grep -iE 'api[_-]?key|secret'; then echo '[Hook] WARNING: Potential secrets detected! Aborting push.' >&2; exit 1; fi"
+        }
+      ]
+    }
+  ]
+}</code></pre>
+                <p><strong>ماذا يحدث عملياً؟</strong> إذا طلب Claude تنفيذ <code>git push</code>، سيقوم النظام بتشغيل أمر الـ grep أولاً. إذا وجد أي سر مكشوف، سيتوقف الأمر، وسيظهر لـ Claude رسالة خطأ تخبره بضرورة إزالة المفتاح السري قبل المحاولة مجدداً.</p>
+            </div>
+
+            <div class="card">
+                <h2>حالة استخدام 2: التنسيق التلقائي (PostToolUse Hook)</h2>
+                <p>لنفترض أن مشروعك يستخدم لغة Python وتود التأكد من أن الكود منسق دائماً باستخدام أداة <code>black</code>. لا تريد أن تطلب من Claude تنسيق الكود في كل مرة يكتب فيها دالة جديدة.</p>
+                <p>سنستخدم خطافاً يعمل <strong>بعد</strong> قيام Claude بتعديل أي ملف Python (PostToolUse).</p>
+
+                <h3>كود الـ Hook:</h3>
+                <pre><code>{
+  "PostToolUse": [
+    {
+      "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.py$\"",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "black \"$file_path\" && echo '[Hook] Formatted file with Black' >&2"
+        }
+      ]
+    }
+  ]
+}</code></pre>
+                <p><strong>النتيجة العملية:</strong> يقوم الذكاء الاصطناعي بكتابة دالة فوضوية، يغلق الملف، وفوراً يعمل الخطاف في الخلفية لتنسيق الملف. سيقرأ Claude الرد ليعرف أن الملف قد تم تنسيقه لصالحه.</p>
+            </div>
+
+            <div class="card">
+                <h2>حالة استخدام 3: تذكير التشغيل قبل الاختبار (PreToolUse Hook)</h2>
+                <p>في العديد من مشاريع الـ Backend، لا يمكن تشغيل الاختبارات (Tests) إلا إذا كانت خدمة Docker (مثلاً قاعدة بيانات Redis) تعمل في الخلفية. غالباً ما ينسى المطورون ذلك.</p>
+
+                <h3>كود الـ Hook:</h3>
+                <pre><code>{
+  "PreToolUse": [
+    {
+      "matcher": "tool == \"Bash\" && tool_input.command matches \"(npm test|pytest)\"",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "if ! docker ps | grep -q 'redis'; then echo '[Hook] ⚠️ REMINDER: Redis container is NOT running. Tests may fail. Run docker-compose up -d redis first.' >&2; fi"
+        }
+      ]
+    }
+  ]
+}</code></pre>
+                <p><strong>النتيجة العملية:</strong> قبل أن ينفذ Claude أمر <code>npm test</code>، سيتحقق الخطاف من وجود حاوية Redis. إذا لم يجدها، سيرسل تحذيراً فورياً لـ Claude لكي يشغل الحاوية أولاً، مما يوفر وقتاً كبيراً في تتبع الأخطاء الغبية.</p>
+            </div>
+            
+            <div class="card">
+                <h2>أين نضع هذه الخطافات؟</h2>
+                <p>يتم تخزين هذه الإعدادات في <code>hooks/hooks.json</code>. استخدم الإضافة الرسمية <code>/hookify</code> لإنشائها بسهولة عبر الدردشة دون الحاجة لكتابة JSON معقد يدوياً.</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-07-skills-mastery.html" class="btn">الدرس السابق</a>
+            <a href="lesson-09-custom-extensions.html" class="btn">الدرس التالي: الإضافات المخصصة</a>
+        </div>
+    </div>
+</body>
+</html>

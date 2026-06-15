@@ -1,0 +1,23 @@
+# .gitignore
+# Node.js dependencies
+node_modules/
+# Python caches
+__pycache__/
+*.pyc
+# macOS metadata
+.DS_Store
+# Log files
+*.log
+# IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+# Build artifacts
+dist/
+build/
+# Temporary files
+*.tmp
+# Secrets
+.env
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس السادس: احتراف الوكلاء الفرعيين (Agents) والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس السادس: احتراف الوكلاء الفرعيين (Agents)</h1>
+            <p>كيفية الاستفادة القصوى من قوة أكثر من 64 وكيل متخصص متوفر في نظام ECC، مع سيناريوهات عملية مفصلة.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>حالة الاستخدام 1: التصميم المعماري (Architecting)</h2>
+                <p>تخيل أنك مقبل على بناء نظام حجز فنادق ضخم، ولديك حيرة حول نوع قاعدة البيانات التي يجب استخدامها، هل هي SQL أم NoSQL، وكيف تنظم هيكلية الخدمات؟</p>
+                <pre><code>/ecc:plan "أريد بناء نظام حجز فنادق عالي التوفر (High Availability). استدعِ وكيل التصميم المعماري لاقتراح تقنيات قواعد البيانات ونمط المعمارية (Microservices vs Monolith)."</code></pre>
+                <p><strong>النتيجة العملية:</strong> وكيل <code>architect</code> لا يكتب شيفرة برمجية. وظيفته تقتصر على تقديم وثيقة معمارية احترافية مدعمة بالأدلة، توضح لماذا يجب استخدام PostgreSQL للعلاقات، و Redis للتخزين المؤقت (Caching)، مما يجنبك أخطاء معمارية باهظة التكلفة لاحقاً.</p>
+            </div>
+
+            <div class="card">
+                <h2>حالة الاستخدام 2: حل أخطاء البناء الغامضة (Build Errors)</h2>
+                <p>قمت بترقية إصدار Node.js وتحديث حزم المشروع. فجأة، تعطل الـ CI/CD Pipeline بظهور خطأ <code>Webpack compilation failed</code> غامض ولا تعرف سببه.</p>
+                <p>لا تطلب من Claude العادي حل المشكلة لأنه سيخمن عشوائياً. استخدم وكيل حل الأخطاء المتخصص:</p>
+                <pre><code>/build-fix "تحليل سجلات فشل البناء (Build Logs) المرفقة، وحل خطأ Webpack تدريجياً عبر وكيل build-error-resolver."</code></pre>
+                <p><strong>النتيجة العملية:</strong></p>
+                <ul>
+                    <li>يقوم هذا الوكيل بقراءة سجل الخطأ بعمق.</li>
+                    <li>يقترح حلاً تدريجياً (مثل تحديث حزمة معينة أو تعديل ملف الإعدادات <code>webpack.config.js</code>).</li>
+                    <li>يقوم باختبار البناء مجدداً حتى يتم الحل بنجاح.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>حالة الاستخدام 3: فحص طلبات السحب (Pull Request Audit)</h2>
+                <p>قام أحد المطورين في فريقك بفتح طلب سحب (PR) يحتوي على 500 سطر من التعديلات في نظام معالجة الدفع (Payment Gateway). المراجعة اليدوية ستستغرق ساعات.</p>
+                <p>استخدم الوكيل الأمني لإجراء مراجعة صارمة فورية:</p>
+                <pre><code>/security-scan "قم بمراجعة طلب السحب الحالي. ركز بشكل خاص على ثغرات XSS أو أي تسريب لمعلومات بطاقات الائتمان في السجلات (Logs)."</code></pre>
+                <p><strong>النتيجة العملية:</strong> الوكيل <code>security-reviewer</code> سينفذ فحصاً يعتمد على قائمة OWASP Top 10، وسينبهك إذا وجد مثلاً أن المطور استخدم <code>console.log(paymentDetails)</code> الذي قد يسرب بيانات حساسة إلى الخوادم.</p>
+            </div>
+
+            <div class="card">
+                <h2>التفويض والعمل الموازي (Parallel Execution)</h2>
+                <p>ماذا لو كنت تريد من وكيل أن يقوم بالمراجعة الأمنية، بينما يقوم وكيل آخر بتحديث المستندات (Documentation) في نفس الوقت؟</p>
+                <pre><code># افتح نافذتين (Tabs) في الطرفية الخاصة بك
+# النافذة الأولى (الوكيل الأمني)
+/security-scan "فحص الكود الجديد."
+
+# النافذة الثانية (وكيل التوثيق)
+/update-docs "تحديث ملف README ليعكس ميزات المصادقة الجديدة."</code></pre>
+                <p>يضمن هذا الفصل بين المهام (Isolation) عدم تداخل سياقات الذكاء الاصطناعي مع بعضها، وينجز العمل بشكل أسرع.</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-05-new-features.html" class="btn">الدرس السابق</a>
+            <a href="lesson-07-skills-mastery.html" class="btn">الدرس التالي: احتراف المهارات</a>
+        </div>
+    </div>
+</body>
+</html>

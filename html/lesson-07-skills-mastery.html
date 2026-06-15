@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس السابع: احتراف المهارات (Skills) والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس السابع: المهارات (Skills) وحالات الاستخدام العملية</h1>
+            <p>كيفية استخدام سير العمل الجاهز، وإنشاء مهارات مخصصة لشركتك لتوفير الوقت.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>حالة استخدام: البحث العميق والمتقدم (Deep Research)</h2>
+                <p>تخيل أنك تريد بناء تطبيق منافس في سوق التقنيات المالية (FinTech) وتحتاج لتحليل السوق وأفضل واجهات برمجة التطبيقات (APIs) المتاحة. بدلاً من البحث اليدوي، استخدم مهارة <code>deep-research</code>.</p>
+                <p><strong>كيف تنفذ ذلك عملياً؟</strong></p>
+                <pre><code>deep-research skill "قم بإجراء بحث شامل حول أفضل واجهات برمجة التطبيقات الخاصة بالبنوك المفتوحة (Open Banking APIs) في الشرق الأوسط، وقارن بين أسعارها وميزاتها في جدول."</code></pre>
+                <p><strong>ماذا سيحدث؟</strong></p>
+                <ul>
+                    <li>ستستخدم المهارة أدوات مثل <code>Firecrawl</code> أو <code>Exa MCP</code> للبحث في الويب الحي (Live Web).</li>
+                    <li>ستقوم بتجميع المعلومات، تنظيمها في جدول Markdown، ووضع مراجع حقيقية (Citations) للمصادر.</li>
+                    <li>يتم إنجاز عمل ساعات في دقائق وبدقة عالية.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>حالة استخدام: إعداد مهارة مخصصة لمعايير شركتك</h2>
+                <p>لنفترض أن شركتك تمتلك إرشادات صارمة جداً حول كيفية كتابة ردود الـ API (يجب أن تحتوي دائماً على حالة <code>success</code> و <code>data</code> و <code>error</code>).</p>
+                <p>بدلاً من إخبار Claude بهذه القاعدة في كل مرة تبدأ فيها محادثة جديدة، قم ببرمجتها كـ "مهارة مخصصة".</p>
+                
+                <h3>كيفية بناء المهارة عملياً:</h3>
+                <ol>
+                    <li>أنشئ مجلداً جديداً داخل مشروعك (أو في مسار <code>~/.claude/skills/</code>): <br> <code>mkdir -p .claude/skills/my-company-api/</code></li>
+                    <li>أنشئ ملفاً باسم <code>SKILL.md</code> داخل المجلد.</li>
+                    <li>اكتب محتوى المهارة كما يلي:</li>
+                </ol>
+                <pre><code>---
+name: my-company-api
+description: Enforces company-wide strict JSON response format for all REST APIs.
+---
+# إرشادات الـ API الخاصة بالشركة
+
+1. جميع الاستجابات الناجحة يجب أن تكون بصيغة:
+{ "success": true, "data": { ... } }
+
+2. جميع الاستجابات الفاشلة يجب أن تكون بصيغة:
+{ "success": false, "error": { "code": 123, "message": "تفاصيل الخطأ" } }
+
+3. لا تستخدم أبداً مصفوفات (Arrays) في الـ Root الخاص بـ JSON.</code></pre>
+                
+                <h3>كيفية استدعائها:</h3>
+                <p>الآن، عندما تكتب كود API جديداً، كل ما عليك قوله للذكاء الاصطناعي هو:</p>
+                <pre><code>my-company-api skill "أنشئ مسار API جديد لاسترجاع بيانات المستخدم."</code></pre>
+                <p>سيقوم الذكاء الاصطناعي تلقائياً بفتح الملف <code>SKILL.md</code>، قراءة قواعد شركتك الخاصة، وتنفيذ الطلب ملتزماً تماماً بالتنسيق المطلوب.</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-06-agents-mastery.html" class="btn">الدرس السابق</a>
+            <a href="lesson-08-hooks-deepdive.html" class="btn">الدرس التالي: الفهم العميق للخطافات</a>
+        </div>
+    </div>
+</body>
+</html>

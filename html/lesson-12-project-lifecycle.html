@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثاني عشر: دورة حياة المشاريع المتقدمة مع ECC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الثاني عشر: دورة حياة المشاريع الاحترافية</h1>
+            <p>الدليل الشامل للخطوات الذهبية لبناء ميزة متكاملة، بدءاً من التخطيط وحتى الـ Merge في GitHub.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>المنهجية المعتمدة (The ECC Lifecycle)</h2>
+                <p>لكي تضمن أن الكود الذي يكتبه الذكاء الاصطناعي احترافي، آمن، وقابل للتطوير، يجب عليك اتباع هذه الدورة (Lifecycle) بشكل صارم عند تطوير أي ميزة جديدة في مشروعك.</p>
+            </div>
+
+            <div class="card">
+                <h2>المرحلة 1: التخطيط الصريح (Explicit Planning)</h2>
+                <p>لا تطلب كتابة الكود أبداً في رسالتك الأولى. حدد المشكلة واطلب خطة (Implementation Plan).</p>
+                <pre><code>/ecc:plan "نريد إضافة ميزة 'سلة المشتريات' (Shopping Cart) في التطبيق. يجب أن تعتمد على Redis للسرعة. قم بإنشاء خطة تقنية توضح مسارات الـ API وشكل البيانات."</code></pre>
+                <p>ستحصل على ملف Markdown يحتوي على الخطة. راجع الخطة، واطلب من Claude تعديلها إذا لزم الأمر قبل الموافقة.</p>
+            </div>
+
+            <div class="card">
+                <h2>المرحلة 2: العزل الآمن (Git Worktrees)</h2>
+                <p>الذكاء الاصطناعي قد يقوم بحذف ملفات أو تغيير إعدادات عن طريق الخطأ. لا تعمل أبداً على الفرع الرئيسي (main).</p>
+                <p>استخدم <code>git worktree</code> لإنشاء بيئة معزولة تماماً لا تؤثر على مساحة عملك الحالية:</p>
+                <pre><code># في طرفية Bash الخاصة بك
+git worktree add ../feature-shopping-cart shopping-cart-branch
+cd ../feature-shopping-cart</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>المرحلة 3: دورة الـ TDD الصارمة</h2>
+                <p>الآن، افتح Claude Code في المجلد الجديد واطلب تنفيذ الخطة خطوة بخطوة <strong>باستخدام الاختبارات أولاً</strong>:</p>
+                <pre><code>tdd-workflow skill "نفذ الخطوة الأولى من الخطة (إنشاء API إضافة منتج للسلة). اكتب الاختبار أولاً ليتحقق من الفشل (RED)، ثم اكتب الكود لنجاحه (GREEN)، ثم قم بالتحسين (REFACTOR)."</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>المرحلة 4: المراجعات التلقائية (Code & Security Reviews)</h2>
+                <p>بعد انتهاء كتابة الكود واجتياز جميع الاختبارات المحلية بنجاح، قم بتمرير الكود للوكلاء المتخصصين:</p>
+                <pre><code># 1. مراجعة الجودة
+/code-review "راجع كود سلة المشتريات للتأكد من عدم وجود تعقيد عالي (High Cyclomatic Complexity)."
+
+# 2. مراجعة الأمان
+/security-scan "تأكد من عدم وجود ثغرات IDOR تسمح لمستخدم بمسح سلة مستخدم آخر."</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>المرحلة 5: التوثيق والتسليم (Git & GitHub PRs)</h2>
+                <p>أخيراً، اجعل الذكاء الاصطناعي يكتب رسالة الالتزام (Commit) وملخص طلب السحب (PR Summary) نيابة عنك:</p>
+                <pre><code># كتابة الالتزام بالصيغة القياسية
+claude "Review my staged changes and write a conventional commit message."
+
+# إنشاء طلب السحب على GitHub (إذا كان لديك GitHub CLI)
+claude "Read the commit history of this branch. Write a comprehensive Markdown PR summary including 'What Changed', 'Why', and 'How to test', then run 'gh pr create -F summary.md'."</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>الخاتمة</h2>
+                <p>باتباع هذه الخطوات الخمسة، يتحول الذكاء الاصطناعي من مجرد "مكمل شفرة" (Auto-complete) إلى <strong>فريق هندسي كامل</strong> يعمل تحت إدارتك بدقة وموثوقية.</p>
+                <p>تهانينا! لقد أكملت دورة إتقان نظام Everything Claude Code بنجاح.</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-11-language-best-practices.html" class="btn">الدرس السابق</a>
+            <a href="lesson-13-multi-agent-orchestration.html" class="btn">الدرس التالي: تعدد الوكلاء والنماذج</a>
+        </div>
+    </div>
+</body>
+</html>

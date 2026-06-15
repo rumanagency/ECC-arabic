@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الرابع: دمج النظام مع المشاريع الحالية والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الرابع: إدخال قوة ECC للمشاريع الموجودة (Legacy Code)</h1>
+            <p>كيفية إدخال قوة Everything Claude Code بأمان إلى قاعدة شيفرة فوضوية قائمة مسبقاً عبر سيناريو عملي.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>حالة استخدام: تنظيف وإصلاح تطبيق Express قديم</h2>
+                <p>تخيل أنك انضممت إلى فريق يعمل على تطبيق Node.js / Express موجود منذ 4 سنوات. الكود مليء بالملفات المهجورة، الأمان ضعيف، والكود غير مرتب.</p>
+                <p>إدخال جميع وكلاء وخطافات ECC دفعة واحدة قد يؤدي لكسر المشروع بالكامل. لذلك، يجب البدء بعملية الدمج <strong>الانتقائي والتدريجي</strong>.</p>
+                
+                <h3>الخطوة الأولى: التثبيت الانتقائي (Selective Install)</h3>
+                <p>لا تقم بتثبيت الملف الشخصي الكامل (Full Profile). بدلاً من ذلك، سنستشير ECC لمعرفة ما نحتاجه فقط لهذا المشروع القديم:</p>
+                <pre><code># أولاً نطلب نصيحة النظام بناءً على احتياجنا
+npx ecc consult "refactoring and security reviews for legacy express js app" --target claude
+
+# بناءً على النصيحة، سنقوم بنسخ وكيلين فقط بشكل يدوي إلى مساحة العمل الحالية لتجنب التأثير على باقي المشروع
+mkdir -p .claude/agents
+cp ~/.claude/agents/refactor-cleaner.md .claude/agents/
+cp ~/.claude/agents/security-reviewer.md .claude/agents/</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الثانية: إنشاء خرائط الكود لتفادي استهلاك السياق (Context)</h2>
+                <p>في التطبيقات القديمة، قراءة جميع الملفات لمحاولة الفهم ستؤدي لاستهلاك الـ 200k رموز بسرعة وتكلفك الكثير.</p>
+                <p>قم باستخدام أداة البحث المتقدمة <code>mgrep</code> (إذا قمت بتثبيتها عبر إضافات Claude) أو أداة <code>grep</code> الأساسية لفهرسة الملفات المهمة فقط دون فتحها:</p>
+                <pre><code>/mgrep "app.post|app.get|require('express')"</code></pre>
+                <p>سيجد النظام نقاط الدخول الأساسية ويوجه الوكلاء لقراءتها فقط، وبالتالي تقليل سياق القراءة بشكل هائل.</p>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الثالثة: التنظيف الآمن (Safe Refactoring)</h2>
+                <p>لدينا مجلد مليء بالوظائف المهجورة. دعونا نشغّل الوكيل الخاص بالتنظيف <strong>على ملف واحد فقط</strong> لتجربته:</p>
+                <pre><code># توجيه الوكيل للملف وتحديد مهمته
+/refactor-clean "قم بتنظيف ملف `src/routes/auth.js` وإزالة كافة الوظائف والمتغيرات التي لم تعد تُستخدم في المشروع."</code></pre>
+                <p><strong>ماذا سيفعل <code>refactor-cleaner</code>؟</strong></p>
+                <ol>
+                    <li>سيقوم بمسح المتغيرات الميتة (Dead Variables).</li>
+                    <li>لن يغير المنطق الأساسي للبرنامج، لأنه مكلف بمهمة محددة النطاق.</li>
+                    <li>قد يستخدم أدوات <code>git diff</code> ليعرض لك التغييرات.</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الرابعة: المراجعة الأمنية والمراقبة (Security Audit)</h2>
+                <p>بعد التنظيف، دعونا نرى ما إذا كان الكود القديم يحتوي على ثغرات عبر وكيل <code>security-reviewer</code>:</p>
+                <pre><code>/security-scan "قم بتحليل الثغرات الأمنية (OWASP Top 10) داخل مجلد `src/routes/` وتأكد من منع هجمات حقن قاعدة البيانات (SQL Injection)."</code></pre>
+                <p>هذا يضمن أن الكود القديم، الذي ربما لم يتم فحصه منذ سنوات، سيخضع لمعايير أمنية قوية ومستقلة دون إرهاق الوكيل الرئيسي (Claude).</p>
+            </div>
+
+            <div class="card">
+                <h2>التراجع الآمن باستخدام Worktrees</h2>
+                <p>بما أنك تقوم بتعديلات جوهرية على نظام موجود، استخدم بيئات آمنة تماماً:</p>
+                <pre><code># أنشئ شجرة عمل جديدة للـ Refactoring دون المساس بالفرع الرئيسي
+git worktree add ../legacy-refactor legacy-refactor-branch
+cd ../legacy-refactor</code></pre>
+                <p>الآن، مهما ارتكب الذكاء الاصطناعي من أخطاء في التعديل والحذف، فالبيئة الأساسية الخاصة بك بأمان ولن تتأثر التغييرات إلا إذا قمت بدمجها بنفسك.</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-03-new-projects.html" class="btn">الدرس السابق</a>
+            <a href="lesson-05-new-features.html" class="btn">الدرس التالي: بناء ميزات جديدة</a>
+        </div>
+    </div>
+</body>
+</html>

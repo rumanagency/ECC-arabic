@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس العاشر: بناء نظام تصميم (Design System) مع ECC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس العاشر: بناء نظام تصميم (Design System) من الصفر</h1>
+            <p>كيف تمنع الفوضى المرئية وتجعل واجهات تطبيقك احترافية ومتسقة باستخدام ECC.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>الخطأ الشائع عند البدء</h2>
+                <p>يطلب معظم المطورين من الذكاء الاصطناعي بناء صفحة الـ Home، ثم صفحة About، ثم صفحة Dashboard بشكل متتالي. <strong>النتيجة؟</strong></p>
+                <ul>
+                    <li>زر في صفحة أحمر، وفي صفحة أخرى برتقالي.</li>
+                    <li>خطوط بأحجام وتشكيلات لا تمت لبعضها بصلة.</li>
+                    <li>استهلاك مفرط لسياق Claude بسبب تكرار كتابة الكود (Inline Styles).</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة 1: استدعاء الوكيل المعماري (Architect)</h2>
+                <p>قبل أن نكتب مكوناً واحداً، نطلب من وكيل التخطيط أو المعماري تصميم "رموز التصميم" (Design Tokens):</p>
+                <pre><code>/ecc:plan "قم بتصميم نظام ألوان وخطوط (Design Tokens) لتطبيق تقني يتميز بالفخامة والوضع الداكن (Dark Mode). لا تقم بكتابة المكونات، فقط صمم لوحة الألوان (Palette) الأساسية والثانوية في ملف `globals.css` أو `tailwind.config.ts`."</code></pre>
+                <p><strong>كيف يساعد ECC هنا؟</strong> الوكيل <code>architect</code> يفهم أن النظام يجب أن يمتلك متغيرات CSS مركزية (CSS Variables). سينشئ لك نظاماً متسقاً يعتمد على متغيرات مثل <code>--color-primary</code> و <code>--font-heading</code>.</p>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة 2: إنشاء مهارة الأنماط (Design Skill)</h2>
+                <p>الآن، كيف نجبر الذكاء الاصطناعي (Claude) على عدم اختراع ألوان جديدة من رأسه عند بناء الصفحات اللاحقة؟ سنستخدم مهارات ECC!</p>
+                <p>يأتي ECC بمهارة مدمجة تسمى <code>frontend-patterns</code> يمكن الاستفادة منها، ولكن يفضل دائماً إنشاء مهارة صارمة لمشروعك:</p>
+                <pre><code># إنشاء مهارة تصميم للمشروع
+mkdir -p .claude/skills/my-design-system/
+echo "---
+name: my-design-system
+description: Rules for styling any UI component in the app.
+---
+# إرشادات التصميم الصارمة (Design System)
+1. **الألوان:** لا تستخدم ألواناً عشوائية مثل text-red-500. استخدم فقط text-primary أو bg-surface.
+2. **الخطوط:** استخدم Inter للنصوص العادية، و Tajawal للعناوين.
+3. **الحواف (Borders):** استخدم دائماً rounded-lg للبطاقات.
+4. **المسافات:** اتبع نظام الـ 8px grid (p-4, m-2).
+" > .claude/skills/my-design-system/SKILL.md</code></pre>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة 3: بناء المكونات الأساسية (Base Components)</h2>
+                <p>الآن نحن مستعدون للبرمجة. نبدأ بمكونات الذرة (Atoms) باستخدام المهارة التي أنشأناها:</p>
+                <pre><code>my-design-system skill "قم بإنشاء مكون `Button` في React يدعم ثلاث حالات (Primary, Secondary, Outline)."</code></pre>
+                <p>بهذا تضمن أن الـ Button سيقرأ الإرشادات الصارمة، وسيخرج متوافقاً 100% مع هويتك البصرية، مما يجعل مظهر التطبيق "Wow" وفخم للغاية.</p>
+            </div>
+
+            <div class="card">
+                <h2>نصيحة إضافية: الرسوميات وتوليد الصور</h2>
+                <p>إذا كنت تعمل باستخدام وكلاء ECC المدعومين بأدوات إنشاء الرسوميات (مثل توليد الصور التخيلية للواجهات عبر أدوات خارجية أو <code>generate_image</code> إن وجدت)، يمكنك التخطيط بصرياً قبل كتابة الكود لضمان أن التصميم المقترح يتناسب مع متطلبات العميل.</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-09-custom-extensions.html" class="btn">الدرس السابق</a>
+            <a href="lesson-11-language-best-practices.html" class="btn">الدرس التالي: أفضل ممارسات اللغات</a>
+        </div>
+    </div>
+</body>
+</html>

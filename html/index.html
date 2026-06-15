@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل إتقان نظام Everything Claude Code (ECC)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        .toc-link {
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #818CF8;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .toc-link:hover {
+            color: #F472B6;
+        }
+        .toc-desc {
+            color: #E2E8F0;
+            font-size: 1rem;
+        }
+        .badge {
+            background-color: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>دليل إتقان نظام ECC</h1>
+            <p>الفهرس الشامل (Table of Contents) للدروس العملية لإتقان أدوات الذكاء الاصطناعي المتقدمة.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <a href="lesson-01-introduction.html" class="toc-link">الدرس 01: مقدمة إلى ECC <span class="badge">أساسيات</span></a>
+                        <div class="toc-desc">ما هو النظام؟ وكيف يختلف عن استخدام Claude العادي.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-02-global-setup.html" class="toc-link">الدرس 02: الإعداد العالمي والتبديل بين النماذج</a>
+                        <div class="toc-desc">كيفية التثبيت، إعدادات خوادم MCP، والتبديل الاستراتيجي بين (Opus, Sonnet, Haiku).</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-03-new-projects.html" class="toc-link">الدرس 03: المشاريع الجديدة وهيكلة المجلدات</a>
+                        <div class="toc-desc">استخدام الوكلاء لبناء مشاريع جديدة مثل SaaS بالـ Laravel و Next.js، وفهم استراتيجيات مجلد <code>.claude/</code>.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-04-existing-projects.html" class="toc-link">الدرس 04: دمج النظام بالمشاريع الحالية</a>
+                        <div class="toc-desc">كيف تنظف وتطور مشروعاً قديماً (Legacy Code) دون تدميره.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-05-new-features.html" class="toc-link">الدرس 05: إضافة الميزات الجديدة و TDD <span class="badge">تطبيق عملي</span></a>
+                        <div class="toc-desc">كتابة الاختبارات أولاً ثم التطوير، مع مثال إضافة نظام تسجيل الدخول عبر GitHub.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-06-agents-mastery.html" class="toc-link">الدرس 06: احتراف الوكلاء (Agents)</a>
+                        <div class="toc-desc">التعرف على الوكلاء المعماريين، محللي الأخطاء (Build Resolvers)، والمراجعين.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-07-skills-mastery.html" class="toc-link">الدرس 07: إتقان المهارات (Skills)</a>
+                        <div class="toc-desc">تنفيذ مهام البحث العميق والتقيد بالمعايير الفنية الجاهزة.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-08-hooks-deepdive.html" class="toc-link">الدرس 08: فهم الخطافات (Hooks)</a>
+                        <div class="toc-desc">أتمتة الأمان وتنسيق الكود، ومنع تسريب البيانات السرية قبل حفظها.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-09-custom-extensions.html" class="toc-link">الدرس 09: الإضافات المخصصة <span class="badge">متقدم</span></a>
+                        <div class="toc-desc">كيف تنشئ وكلاء ومهارات وخطافات تناسب فريق عملك المحلي حصراً.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-10-design-systems.html" class="toc-link">الدرس 10: بناء أنظمة التصميم (Design Systems)</a>
+                        <div class="toc-desc">تأسيس هوية بصرية صارمة للتطبيق باستخدام وكيل التخطيط ومهارات الـ Frontend.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-11-language-best-practices.html" class="toc-link">الدرس 11: أفضل الممارسات اللغوية</a>
+                        <div class="toc-desc">إجبار النظام على اتباع معايير محددة لأي لغة مثل Python (Django) أو Go أو Rust.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-12-project-lifecycle.html" class="toc-link">الدرس 12: دورة حياة المشاريع المتقدمة</a>
+                        <div class="toc-desc">من التخطيط الاستراتيجي إلى عزل فروع Git وحتى إنشاء ملخص الـ PR النهائي.</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-13-multi-agent-orchestration.html" class="toc-link">الدرس 13: تعدد النماذج والوكلاء (Orchestration)</a>
+                        <div class="toc-desc">استخدام Claude و Gemini معاً في مشروع واحد للمراجعة المتبادلة (Peer Review).</div>
+                    </li>
+                    <li class="toc-item">
+                        <a href="lesson-14-dashboard-gui.html" class="toc-link">الدرس 14: الواجهة الرسومية (ECC Dashboard)</a>
+                        <div class="toc-desc">تصفح وإدارة نظام الذكاء الاصطناعي الخاص بك عبر تطبيق واجهة مستخدم رسومية (GUI).</div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

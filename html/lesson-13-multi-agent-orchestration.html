@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثالث عشر: تعدد الوكلاء والنماذج (Multi-Agent Orchestration)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الثالث عشر: تعدد الوكلاء والنماذج</h1>
+            <p>كيفية دمج عدة نماذج ذكاء اصطناعي (مثل Claude, Gemini, Qwen) في مشروع واحد للحصول على نظام "مراجعة النظراء" (Peer Review).</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>هل استخدام أكثر من نموذج/وكيل فكرة جيدة؟</h2>
+                <p><strong>نعم، وبشدة!</strong> الاعتماد على نموذج واحد (مثلاً Claude فقط) طوال دورة حياة المشروع يؤدي إلى ما يسمى بـ "الانحياز التأكيدي" (Confirmation Bias). النموذج سيميل للموافقة على أخطائه الخاصة ولن يكتشف الثغرات المعمارية التي صنعها.</p>
+                <p>إدخال نموذج آخر (مثل Gemini أو Qwen عبر واجهات أخرى أو وكلاء مختلفين) يعمل كـ <strong>مراجع مستقل</strong>، تماماً كما يفعل المطورون البشر حين يراجعون كود بعضهم البعض.</p>
+            </div>
+
+            <div class="card">
+                <h2>كيف نحقق التوافق (Compatibility) بين الوكلاء؟</h2>
+                <p>تكمن المشكلة الكبرى في أن الوكلاء قد "يتشاجرون" أو يمسحون عمل بعضهم البعض (Race Conditions) إذا عملوا في نفس الوقت على نفس الملف.</p>
+                
+                <h3>أفضل الممارسات (Best Practices):</h3>
+                <ol>
+                    <li><strong>لغة التواصل العالمية (Markdown):</strong> لا تجعل الوكلاء يتحدثون مع بعضهم برمجياً. اجعلهم يتبادلون ملفات <code>.md</code>. وكيل (أ) يكتب الخطة في <code>plan.md</code>، ووكيل (ب) يقرأها وينفذها.</li>
+                    <li><strong>العزل الزماني (Sequential Execution):</strong> لا تشغل وكيلين ليكتبا الكود في نفس اللحظة. دع الأول ينتهي من الكود، ثم دع الثاني يقوم بالمراجعة الأمنية.</li>
+                    <li><strong>العزل المكاني (Branching/Dmux):</strong> إذا أردت تشغيلهم في نفس اللحظة، استخدم مهارة <code>dmux-workflows</code> المدمجة في ECC لإدارة الجلسات في نوافذ منفصلة، أو اجعل كل وكيل يعمل على فرع Git (Branch) مختلف.</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h2>حالة دراسة (Case Study): التعاون بين Gemini و Claude Code</h2>
+                <p>تخيل أننا نبني نظام دفع (Payment Gateway). سنستخدم نقاط قوة كل نموذج:</p>
+                
+                <h3>الخطوة 1: المهندس المعماري (Gemini أو Qwen)</h3>
+                <p>نماذج مثل Gemini تتميز بالسياق الواسع وقدرات التوثيق. نفتح نافذة Gemini (أو واجهته) ونطلب منه:</p>
+                <pre><code>"أنت المهندس المعماري (Architect). اكتب وثيقة المتطلبات (PRD) لنظام دفع متكامل، واحفظ التفاصيل والهيكلة في ملف markdown. لا تكتب أي كود فعلي."</code></pre>
+                <p><strong>النتيجة:</strong> حصلنا على ملف <code>docs/payment-architecture.md</code> دقيق جداً.</p>
+
+                <h3>الخطوة 2: المبرمج المنفذ (Claude Code عبر ECC)</h3>
+                <p>الآن، نعود لطرفية (Terminal) مشروعنا حيث يعمل Claude Code، والذي يتميز بقدرات كتابة كود مذهلة ودعم TDD:</p>
+                <pre><code>/ecc:plan "اقرأ وثيقة المتطلبات في docs/payment-architecture.md وضع خطة برمجية لتنفيذها خطوة بخطوة."
+# ثم نبدأ التنفيذ
+tdd-workflow skill "نفذ الخطوة الأولى من الخطة."</code></pre>
+                <p><strong>النتيجة:</strong> قام Claude بكتابة الكود بناءً على مخطط Gemini.</p>
+
+                <h3>الخطوة 3: ضمان الجودة ومراجع النظراء (Gemini / Qwen مجدداً)</h3>
+                <p>بعد أن انتهى Claude من كتابة الكود وإصدار طلب السحب (Pull Request)، نطلب من Gemini (أو نستخدم نموذج Qwen عبر إضافة مراجعة متخصصة) القيام بالآتي:</p>
+                <pre><code>"قم بمراجعة ملف الكود src/payment.ts، وقارنه بالمتطلبات في docs/payment-architecture.md. هل نسي Claude أي متطلب أو أخطأ في المنطق المعماري؟"</code></pre>
+                <p><strong>لماذا هذا مفيد؟</strong> لأن Gemini سيقيم الكود بحيادية تامة، وسيكتشف بسهولة إذا قام Claude بالانحراف عن الخطة الأساسية أو ارتكب هفوة أمنية لم يلاحظها.</p>
+            </div>
+            
+            <div class="card">
+                <h2>الخلاصة المتقدمة (The Master Workflow)</h2>
+                <p>استخدم <strong>نموذج A</strong> لكتابة التوثيق ووثائق المتطلبات.<br>استخدم <strong>نموذج B (Claude Code)</strong> لهندسة الكود وبنائه.<br>استخدم <strong>نموذج C (أو A)</strong> كمراجع أمني وضامن للجودة (QA).</p>
+                <p>هذا يقلل الأخطاء (Hallucinations) إلى أدنى حد ممكن ويقودك لبناء أنظمة برمجية بمستوى الشركات الكبرى (Enterprise Grade).</p>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-12-project-lifecycle.html" class="btn">الدرس السابق</a>
+            <a href="lesson-14-dashboard-gui.html" class="btn">الدرس التالي: واجهة لوحة التحكم</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الخامس: بناء ميزات جديدة مع ECC والتطبيقات العملية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الدرس الخامس: سير عمل بناء الميزات الجديدة</h1>
+            <p>كيفية تطبيق التطوير الموجه بالاختبار (TDD) عملياً لبناء الميزات بكفاءة، مع سيناريو كامل لتسجيل الدخول.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>حالة استخدام عملية: إضافة ميزة تسجيل الدخول (OAuth Login)</h2>
+                <p>نريد إضافة ميزة تسجيل الدخول للمستخدمين عبر GitHub. لن نطلب من Claude أن يكتب الكود فوراً لئلا نحصل على كود غير مغطى باختبارات أو مليء بالثغرات.</p>
+                
+                <h3>الخطوة الأولى: التخطيط الصارم (Planning)</h3>
+                <pre><code>/ecc:plan "أريد إضافة ميزة تسجيل الدخول عبر GitHub باستخدام Passport.js. قم بوضع الهيكل الأساسي وتحديد الملفات التي سيتم إنشاؤها وتعديلها."</code></pre>
+                <p><strong>لماذا نبدأ هنا؟</strong> الوكيل <code>planner</code> سيولد وثيقة Markdown واضحة، ليراجعها المستخدم. إذا كانت الخطة جيدة، نمضي للخطوة الثانية.</p>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الثانية: دورة الـ TDD الفعلية</h2>
+                <p>يفرض نظام ECC تغطية اختبارات بنسبة 80% على الأقل. سنستخدم مهارة `tdd-workflow` ووكيل `tdd-guide` لبناء ميزة تسجيل الدخول خطوة بخطوة.</p>
+                <pre><code>tdd-workflow skill "بناءً على الخطة، قم بإنشاء مسار الـ API (Route) الخاص بتسجيل دخول GitHub."</code></pre>
+                
+                <h3>المرحلة الأولى: الفشل المتعمد (RED)</h3>
+                <p>سيكتب الوكيل ملف اختبار (مثلاً <code>auth.test.js</code>) يتحقق من أن المسار <code>/auth/github</code> يرد بالرمز 302 (إعادة توجيه). عند تشغيل الاختبار سيظهر لون <strong>أحمر</strong> لأن الكود الفعلي لم يُكتب بعد.</p>
+
+                <h3>المرحلة الثانية: اجتياز الاختبار (GREEN)</h3>
+                <p>سيقوم الوكيل الآن بكتابة <strong>الحد الأدنى</strong> من كود الإنتاج (مثلاً في <code>auth.routes.js</code>) لجعل مسار الـ API يعمل بشكل صحيح بحيث ينجح الاختبار ويتحول اللون إلى <strong>أخضر</strong>.</p>
+
+                <h3>المرحلة الثالثة: التحسين (REFACTOR)</h3>
+                <p>سيقوم الوكيل بتحسين كود <code>auth.routes.js</code> (إضافة التعليقات، ترتيب الاستيرادات، تطبيق أفضل الممارسات)، وفي كل خطوة يتأكد أن الاختبار ما زال يعطي لوناً أخضر.</p>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الثالثة: المراجعة التلقائية (Code Review)</h2>
+                <p>بعد انتهاء الـ TDD بنجاح، لدينا كود يعمل ومغطى بالاختبارات. ولكن هل الكود نظيف وقابل للصيانة؟ نمرره للوكيل <code>code-reviewer</code>:</p>
+                <pre><code>/code-review "قم بمراجعة الكود الذي تمت إضافته مؤخراً لمسارات المصادقة (Auth Routes). هل يتوافق مع معايير المشروع؟"</code></pre>
+                <p>قد يوصي الوكيل بفصل منطق التحكم (Controller) عن ملف الـ Routes، مما يجعل التطبيق أكثر تنظيماً.</p>
+            </div>
+
+            <div class="card">
+                <h2>الخطوة الرابعة: المراجعة الأمنية الصارمة (Security Review)</h2>
+                <p>بما أننا نتعامل مع عملية تسجيل الدخول، فإن الأمان يمثل أولوية قصوى. سنقوم بمسح أمني فوراً باستخدام <code>security-reviewer</code>:</p>
+                <pre><code>/security-scan "قم بتحليل ملفات المصادقة الجديدة بحثاً عن أي ثغرات أو أسرار (Secrets) تم رفعها بالخطأ."</code></pre>
+                <p><strong>ماذا نتوقع؟</strong></p>
+                <ul>
+                    <li>إذا قمنا بكتابة <code>GITHUB_CLIENT_SECRET="12345"</code> داخل الكود بدلاً من ملف <code>.env</code>، سيتوقف الوكيل فوراً ويطلق تحذيراً لتغيير هذا السلوك.</li>
+                    <li>سيتأكد الوكيل من وجود حماية ضد هجمات تزوير الطلبات (CSRF).</li>
+                </ul>
+            </div>
+        </main>
+
+        <div class="nav-buttons">
+            <a href="lesson-04-existing-projects.html" class="btn">الدرس السابق</a>
+            <a href="lesson-06-agents-mastery.html" class="btn">الدرس التالي: احتراف الوكلاء</a>
+        </div>
+    </div>
+</body>
+</html>
