@@ -2,7 +2,10 @@
 
 <div align="center">
   <a href="https://ruman.sa">
-    <img src="assests/H_Colored_Logo@2x.png" alt="Ruman Agency Logo" width="150" />
+    <picture>
+      <source srcset="assests/H_Colored_LogoWhite@2x.png" media="(prefers-color-scheme: dark)">
+      <img src="assests/H_Colored_Logo@2x.png" alt="Ruman Agency Logo" width="150" />
+    </picture>
   </a>
 </div>
 
